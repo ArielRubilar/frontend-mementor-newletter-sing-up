@@ -17,6 +17,8 @@
 
 :root {
     --primary-400: hsl(var(--tomato));
+    --primary-400-1: hsla(var(--tomato), .1);
+    --primary-400-5: hsla(var(--tomato), .5);
     --primary-gradient: linear-gradient(
         90deg,
         hsl(343, 86%, 67%) 15%,
@@ -36,10 +38,13 @@
 
 :root {
     --radius-400: .5rem;
+    --radius-800: 1rem;
+    --radius-900: 1.5rem;
     --space-200: .5rem; 
     --space-400 :  1rem;
     --space-600: 1.5rem;
     --space-800:  2rem;
+    --space-900:  3rem;
 }
 
 
@@ -92,6 +97,10 @@ main{
     --_gap: var(--space-800)
 }
 
+.grid-flow--900 {
+    --_gap: var(--space-900)
+}
+
 .grid-flow--400 {
     --_gap: var(--space-400)
 }
@@ -101,11 +110,9 @@ main{
 }
 
 .card {
+    --_padding: 0;
+    padding: var(--_padding);
     background: var(--base-400);
-}
-
-.card__content {
-    height: 100%;
 }
 
 .card__body {
@@ -116,7 +123,7 @@ main{
 
 .card__title {
     font-weight: var(--fw-bold);
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 0.5rem + 4.8vw, 3.5rem);
 }
 
 .card__items-list {
@@ -128,7 +135,6 @@ main{
     gap:  var(--space-400) ;
     align-items: start;
 }
-
 
 .card__picture > img {
     object-fit: fill;
@@ -143,7 +149,7 @@ main{
 }
 
 .form-field__input {
-    --_color:  var(--neutral-200)
+    --_color:  var(--neutral-200);
     outline: none;
     border-radius: var(--radius-400);
     color: var(--_color);
@@ -157,7 +163,7 @@ main{
 
 .form-field__input[aria-invalid] {
     color: var(--primary-400) ;
-    background: hsla(var(--tomato), .1);
+    background: var(--primary-400-1);
 }
 
 .form-field__input[aria-invalid]:is(:focus) {
@@ -189,13 +195,19 @@ main{
 
 .btn-primary:is(:hover, :focus) {
     background: var(--primary-gradient);
-    box-shadow: 0 10px 20px hsla(var(--tomato) , .5);
+    box-shadow: 0 10px 20px var(--primary-400-5);
 }
 
-.message-card-content {
+.message-card {
     padding: 1rem;
     align-items: end;
 }
+
+.form-card {
+    grid-template-rows: auto 1fr;
+    --_gap: var(--space-800)
+}
+
 
 @media(min-width: 600px) {
     body {
@@ -208,10 +220,10 @@ main{
     }
 
     .card {
+        --_padding: var(--space-800);
         width: 100%;
         max-width: 900px;
-        padding: var(--space-800);
-        border-radius: var(--radius-400);
+        border-radius: var(--radius-900);
         grid-auto-flow: dense;
         align-items: center;
     }
@@ -227,6 +239,12 @@ main{
 
     .card__picture {
         grid-column: 2;
+    }
+
+    .form-card {
+        --_padding: var(--space-800) var(--space-800) var(--space-800) var(--space-900);
+        grid-template-rows: auto ;
+        --_gap: var(--space-900)
     }
   
 }
