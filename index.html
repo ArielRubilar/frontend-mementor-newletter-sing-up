@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js"></script>
+</head>
+
+<body>
+
+  <main class="grid-flow">
+
+    <div class="card grid-flow grid-flow--800" id="card-form">
+
+        <picture class="card__picture">
+          <source media="(max-width: 599px)" srcset="assets/images/illustration-sign-up-mobile.svg">
+          <img decoding="async" loading="lazy" src="assets/images/illustration-sign-up-desktop.svg"
+            alt="computer screen and application windows">
+        </picture>
+
+        <div class="card__body">
+          <h1 class="card__title mb-4">Stay updated!</h1>
+          <p class="card__description mb-4">Join 60,000+ product managers receiving monthly updates on:</p>
+
+          <ul role="list" class="card__items-list mb-8 grid-flow grid-flow--400">
+            <li class="card_list-item">
+              <img src="./assets/images/icon-list.svg" alt="check"><span>Product discovery and building what
+                matters</span>
+            </li>
+            <li class="card_list-item">
+              <img src="./assets/images/icon-list.svg" alt="check"><span>Measuring to ensure updates are a
+                success</span>
+            </li>
+            <li class="card_list-item">
+              <img src="./assets/images/icon-list.svg" alt="check"> <span>And much more!</span>
+            </li>
+          </ul>
+
+          <form action="" class="form grid-flow grid-flow--400" id="form">
+            <div class="form-field grid-flow grid-flow--200 ">
+              <label class="form-field__label" for="email">
+                <span> Email address</span>
+                <span class="form-field__error"> Valid email required</span>
+              </label>
+              <input class="form-field__input" type="text" name="email" id="email" placeholder="email@company.com">
+            </div>
+
+            <button type="submit" class="btn-primary">
+              Subscribe to monthly newsletter
+            </button>
+
+          </form>
+
+      </div>
+
+   
+    </div>
+
+    <div class="card card--small  grid-flow grid-flow--800 message-card-content d-none"  id="card-message">
+        <div>
+          <img src="./assets/images/icon-success.svg" alt="check" class="mb-8">
+          <h1 class="card__title mb-8">Thanks for subscribing!</h1>
+          <p class="">
+            A confirmation email has been sent to <span id="span-email"></span>
+            Please open it and click the button inside to confirm your subscription.
+          </p>
+        </div>
+
+        <button class="btn-primary" id="bnt-dismiss-message">Dismiss message</button>
+
+    </div>
+
+  </main>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Ariel Rubilar</a>.
+  </div>
+</body>
+
+</html>
