@@ -44,7 +44,7 @@
     --space-400 :  1rem;
     --space-600: 1.5rem;
     --space-800:  2rem;
-    --space-900:  3rem;
+    --space-900: clamp(2rem , 6vw , 5rem);
 }
 
 
@@ -97,10 +97,6 @@ main{
     --_gap: var(--space-800)
 }
 
-.grid-flow--900 {
-    --_gap: var(--space-900)
-}
-
 .grid-flow--400 {
     --_gap: var(--space-400)
 }
@@ -110,20 +106,13 @@ main{
 }
 
 .card {
-    --_padding: 0;
-    padding: var(--_padding);
     background: var(--base-400);
-}
-
-.card__body {
-    --_padding: 0  var(--space-400) var(--space-800)  var(--space-400) ;
-    padding: var( --_padding);
-    text-align: start;
 }
 
 .card__title {
     font-weight: var(--fw-bold);
     font-size: clamp(2rem, 0.5rem + 4.8vw, 3.5rem);
+    line-height: 1;
 }
 
 .card__items-list {
@@ -150,7 +139,7 @@ main{
 
 .form-field__input {
     --_color:  var(--neutral-200);
-    outline: none;
+    outline: transparent;
     border-radius: var(--radius-400);
     color: var(--_color);
     padding:  var(--space-400) ;
@@ -166,8 +155,8 @@ main{
     background: var(--primary-400-1);
 }
 
-.form-field__input[aria-invalid]:is(:focus) {
-    outline-color: currentColor;
+.form-field__input:is(:focus-visible) {
+    outline: 2px solid currentColor;
 }
 
 .form-field__label:has( + .form-field__input[aria-invalid]  ) .form-field__error {
@@ -185,7 +174,7 @@ main{
     --_color: var(--base-400);
     border-radius: var(--radius-400);
     padding:  var(--space-400) ;
-    outline: none;
+    outline: transparent;
     border: none;
     background: var(--_bg);
     color: var(--_color);
@@ -193,20 +182,37 @@ main{
     cursor: pointer;
 }
 
-.btn-primary:is(:hover, :focus) {
+.btn-primary:is(:hover, :focus-visible) {
     background: var(--primary-gradient);
     box-shadow: 0 10px 20px var(--primary-400-5);
 }
 
 .message-card {
-    padding: 1rem;
+    padding: var(--space-400);
     align-items: end;
 }
 
 .form-card {
     grid-template-rows: auto 1fr;
-    --_gap: var(--space-800)
 }
+
+.form-card > .card__body {
+    padding: var(--space-800) var(--space-400);
+}
+
+
+
+@media(prefers-reduced-motion: no-preference ) {
+    .fade-in{
+        animation: fadeIn 2s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+}
+
 
 
 @media(min-width: 600px) {
@@ -220,12 +226,8 @@ main{
     }
 
     .card {
-        --_padding: var(--space-800);
-        width: 100%;
         max-width: 900px;
         border-radius: var(--radius-900);
-        grid-auto-flow: dense;
-        align-items: center;
     }
 
     .card--small{
@@ -233,7 +235,6 @@ main{
     }
 
     .card__body {
-        --_padding: 0;
         grid-column: 1;
     }
 
@@ -242,9 +243,20 @@ main{
     }
 
     .form-card {
-        --_padding: var(--space-800) var(--space-800) var(--space-800) var(--space-900);
-        grid-template-rows: auto ;
-        --_gap: var(--space-900)
+        grid-auto-flow: dense;
+        align-items: center;
+    }
+
+    .form-card > .card__body {
+        padding: var(--space-800) var(--space-900);
+    }
+
+    .form-card > .card__picture{
+        padding: var(--space-800) var(--space-800) var(--space-800) 0;
+    }
+
+    .message-card {
+        padding: var(--space-800); 
     }
   
 }

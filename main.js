@@ -9,37 +9,33 @@ const pattern = ( regex ) => ( value ) => {
 const regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
 const d = document
 
-const handleSubmit =( form , cardForm , cardMessage ) =>   ( event ) => {
+const handleSubmit =( $form , $cardForm , $cardMessage ) =>   ( event ) => {
     event.preventDefault()
 
-    const emailInput =  form.querySelector('[name="email"]')
-    const email = emailInput.value
+    const $emailInput =  $form.querySelector('[name="email"]')
+    const email = $emailInput.value
     
     const validations = [
         required(),
         pattern(regexEmail)
     ]
     
-    const isValidEmail = validations.reduce( (prev ,validation) => {
-       if( !validation(email) ) return false
-       return prev
-    }, true)
+    const isValidEmail = validations.every( validation => validation(email) )
 
-    emailInput.toggleAttribute('aria-invalid', !isValidEmail)
+    $emailInput.toggleAttribute('aria-invalid', !isValidEmail)
 
     if(isValidEmail) {
-
-        const spanEmail = cardMessage.querySelector('#span-email')
+        const spanEmail = $cardMessage.querySelector('#span-email')
         spanEmail.innerText = email
-        cardForm.classList.toggle('d-none')
-        cardMessage.classList.toggle('d-none')
-        form.reset();
+        $cardForm.classList.toggle('d-none')
+        $cardMessage.classList.toggle('d-none')
+        $form.reset();
     }
 }
 
-const handleClickDismiss = (cardForm , cardMessage) => () => {
-    cardForm.classList.toggle('d-none')
-    cardMessage.classList.toggle('d-none')
+const handleClickDismiss = ($cardForm , $cardMessage) => () => {
+    $cardForm.classList.toggle('d-none')
+    $cardMessage.classList.toggle('d-none')
 }
 
 

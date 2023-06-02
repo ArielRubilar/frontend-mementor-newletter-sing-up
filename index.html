@@ -29,7 +29,7 @@
 
   <main class="grid-flow">
 
-    <div class="card grid-flow  form-card" id="card-form">
+    <div class="card grid-flow  form-card fade-in" id="card-form">
 
         <picture class="card__picture">
           <source media="(max-width: 599px)" srcset="assets/images/illustration-sign-up-mobile.svg">
@@ -55,7 +55,7 @@
             </li>
           </ul>
 
-          <form action="" class="form grid-flow grid-flow--400" id="form">
+          <form  class="form grid-flow grid-flow--400" id="form">
             <div class="form-field grid-flow grid-flow--200 ">
               <label class="form-field__label" for="email">
                 <span> Email address</span>
@@ -75,11 +75,11 @@
    
     </div>
 
-    <div class="card card--small  grid-flow grid-flow--800 message-card d-none "  id="card-message">
+    <div class="card card--small  grid-flow grid-flow--800 message-card d-none fade-in"  id="card-message">
         <div>
           <img src="./assets/images/icon-success.svg" alt="check" class="mb-8">
           <h1 class="card__title mb-8">Thanks for subscribing!</h1>
-          <p class="">
+          <p class="card__description">
             A confirmation email has been sent to <span id="span-email"></span>
             Please open it and click the button inside to confirm your subscription.
           </p>
